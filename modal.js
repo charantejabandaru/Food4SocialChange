@@ -14,8 +14,8 @@ const donate = () => {
     let globalstorage=JSON.parse(getData);
     //console.log(globalstorage);
     //if(globalstorage.length===0){
-      globalStorage.push(taskData);
-      localStorage.setItem("taskyy",JSON.stringify({cards : globalStorage}));
+    //  globalStorage.push(taskData);
+    //  localStorage.setItem("taskyy",JSON.stringify({cards : globalStorage}));
     //}
     //else{
       Object.values(globalstorage).push(taskData);
