@@ -1,0 +1,52 @@
+.mainContainer {
+   /* background-image: url(C:\Users\shiva\OneDrive\Desktop\Food4 Social Change\download.jpg) ;*/
+   padding: 255px;
+}
+main {
+    background-image: url(background1.jpg);
+    background-size: cover;
+}
+
+.hero_text {
+    color: #374259;
+    font-size: 50px;
+}
+.navbar {
+    margin: 2px;
+    padding: 2px;
+    background-color: #F5EDDC;
+    border: 2px solid #F5EDDC;
+    border-radius: 5px;
+}
+
+.nav_container {
+    display: flex;
+    justify-content: space-between;
+}
+.nav_brand {
+    margin-left: 10px;
+    width: 300px;
+    height: 85px;
+}
+
+.nav_logo {
+    width: 100%;
+}
+
+.nav_button {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button {
+    background-color: #F5EDDC;
+    border: none;
+    color: green;
+    padding: 20px;
+    font-size: 18px;
+}
+
+a {
+    color: green;
+}
+
