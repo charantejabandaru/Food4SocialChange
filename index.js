@@ -47,10 +47,10 @@ app.get("/donations/:city/:area",async (req,res)=>{
     return res.json(donations);
 });
 
-app.put("/donations/accept/:mobileNumber",async (req,res)=>{
+app.put("/donations/accept",async (req,res)=>{
     const donation= await donationModel.findOneAndUpdate(
         {
-            donorMobileNumber : req.params.mobileNumber,
+            donorMobileNumber : req.body.donorMobileNumber
            
         },
         {
@@ -61,16 +61,13 @@ app.put("/donations/accept/:mobileNumber",async (req,res)=>{
         }
         );
 
-    const volunteer = await volunteerModel.findOneAndUpdate({ status : status.volunteerStatus.available,
-            city : req.params.city,
-            area : req.params.area
+    const volunteer = await volunteerModel.findOneAndUpdate({ volunteerMobileNumber : '7093180389' /*add loggedInUser's mobileNumber here*/,
         },
         { status : status.volunteerStatus.assigned,
-          donorMobileNumber : req.params.mobileNumber},{ new : true});
-
+          donorMobileNumber : req.body.donorMobileNumber},{ new : true});
     return res.json(donation);
 });
-
+/*
 app.put("/donations/accept/:mobileNumber/:area/:city/addvolunteer",async (req,res)=>{
     const volunteer = await volunteerModel.findOneAndUpdate({ status : status.volunteerStatus.available,
         city : req.params.city,
@@ -81,38 +78,66 @@ app.put("/donations/accept/:mobileNumber/:area/:city/addvolunteer",async (req,re
     );
     
     return res.json({volunteer : volunteer});
-});
+});*/
 
-app.put("/donations/:mobileNumber/pickup",async (req,res)=>{
-    const donation= await donationModel.findOneAndUpdate(
-        {
-            donorMobileNumber : req.params.mobileNumber
+app.put("/donations/pickup",async (req,res)=>{
+    const donation= req.body;
+   
+    const eligibleRecipient = await recipientModel.findOne({
+        lastUpdatedTimeStamp : "1",
+        area : donation.area,
+        city : donation.city
+    });
+    if(!eligibleRecipient){
+        const recipientSample = await recipientModel.updateMany({
+            lastUpdatedTimeStamp : "2",
+            area : donation.area,
+            city : donation.city
         },
         {
-            status : status.donationStatus.pickedup
+            lastUpdatedTimeStamp : "1"
+        },
+        {
+            new : true
+        });
+    }
+    const recipient = await recipientModel.findOne({
+        lastUpdatedTimeStamp : "1",
+        area : donation.area,
+        city : donation.city
+    });
+
+    const donationFinal= await donationModel.findOneAndUpdate(
+        {
+            donorMobileNumber : req.body.donorMobileNumber
+        },
+        {
+            status : status.donationStatus.pickedup,
+            recipientMobileNumber : recipient.recipientMobileNumber
         },
         {
             new : true
         }
         );
 
-    return res.json({donation : donation});
+    return res.json({donation:donationFinal,recipient : recipient});
 });
-
-app.put("/donations/:mobileNumber/deliver",async (req,res)=>{
-   /* const donation= await donationModel.findOneAndUpdate(
+ 
+app.put("/donations/deliver",async (req,res)=>{
+    const donation= await donationModel.findOne(
         {
-            donorMobileNumber : req.params.mobileNumber
-        },
+            donorMobileNumber : req.body.donorMobileNumber
+        }
+        );
+    const updateRecipient = await recipientModel.findOneAndUpdate({recipientMobileNumber : donation.recipientMobileNumber},
         {
-            status : status.donationStatus.delivered
+            lastUpdatedTimeStamp : "2"
         },
         {
             new : true
-        }
-        );*/
-    await donationModel.deleteOne({donorMobileNumber : req.params.mobileNumber});
-    const volunteer = await volunteerModel.updateMany({ donorMobileNumber: req.params.mobileNumber},
+        });
+    await donationModel.deleteOne({donorMobileNumber : req.body.donorMobileNumber});
+    const volunteer = await volunteerModel.updateMany({ donorMobileNumber: req.body.donorMobileNumber},
         {
             status : status.volunteerStatus.available,
             donorMobileNumber : ""
@@ -121,7 +146,7 @@ app.put("/donations/:mobileNumber/deliver",async (req,res)=>{
             new : true 
         }
         );
-    return res.json({donation : donation});
+    return res.json("donation Delivered Successfully");
 });
 
 app.post("/donations",async (req,res) => {
@@ -145,27 +170,44 @@ app.post("/donations",async (req,res) => {
     }
 }); 
 
-app.post("/signup",async (req,res) => {
+app.post("/volunteers",async (req,res) => {
 
 
-    const newvolunteer = {
+   /* const newvolunteer = {
         volunteerName: "Harish",
         volunteerMobileNumber : "7373737373",
         status : status.volunteerStatus.assigned,
         city : "Hyderabad",
         area : "Kukatpally",
-        email : "",
+        email : "", 
         password : "",
         donorMobileNumber: "7032994189"
-    };
-  //  const newDonation = req.body;
-    volunteerModel.create(newvolunteer);
+    };*/
+    const newvolunteer = req.body;
+    await volunteerModel.create(newvolunteer);
     return res.json({message :"volunteer signedup succesfully"});
 },(error)=>{
     if(error){
         console.log(error);
     }
 }); 
+
+app.post("/recipients",async (req,res) => {
+    const newRecipient = req.body;
+    const isRecipientExists = await recipientModel.findOne({ recipientMobileNumber : newRecipient.recipientMobileNumber});
+    if(isRecipientExists){
+        return res.json({result : false });
+    }
+    else{
+        await recipientModel.create(newRecipient);
+        return res.json({result : true});
+    }
+},(error)=>{
+    if(error){
+        console.log(error);
+        return error;
+    }
+});
 
 app.listen(3000,() => {
         console.log("server is running on port 3000");
