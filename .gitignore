@@ -5,3 +5,7 @@ package-lock.json
 package.json
 
 .env
+
+/my-app
+
+/views

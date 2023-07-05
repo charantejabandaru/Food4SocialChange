@@ -14,4 +14,4 @@ const recipientSchema = mongoose.Schema(
 
 const recipientModel = mongoose.model("recipients",recipientSchema);
 
-module.exports = recipientModel;
+module.exports = recipientModel; 

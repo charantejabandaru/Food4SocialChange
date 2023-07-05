@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const donationSchema = mongoose.Schema(
     {
         donorName: String,
-        donarMobileNumber : String,
+        donorMobileNumber : String,
         pickupAddress: String,
         status : String,
         city : String,

@@ -7,8 +7,8 @@ const volunteerSchema = mongoose.Schema(
         status : String,
         city : String,
         area : String,
-        volunteerEmail : String,
-        volunteerPassword : String,
+        email : String,
+        password : String,
         donorMobileNumber: String
     }
 );
