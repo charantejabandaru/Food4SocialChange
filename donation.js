@@ -11,7 +11,7 @@ const donationSchema = mongoose.Schema(
         foodType : String,
         foodQuantity : String,
         recipientMobileNumber: String
-    }
+    } 
 );
 
 const donationModel = mongoose.model("donations",donationSchema);
