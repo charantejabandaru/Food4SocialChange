@@ -6,7 +6,7 @@ const configdb = require("./config/configdb");
 
 const app = express();
 
-dotenv.config({path: "./config/config.env"});
+dotenv.config({path: "./config/.env"});
 configdb(app);
 
 app.use(cors({
