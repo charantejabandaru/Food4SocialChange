@@ -1,0 +1,36 @@
+<div class="topbarContainer">
+    <div class="topbarLeft">
+        <span class="logo"><a routerLink="/"><img src="../../../assets/logo.jpg" class="logoimage"></a></span>
+    </div>
+    <div class="topbarRight">
+        <div class="topbarLinks">
+            <span class="topbarLink"><a routerLink="/login" routerLinkActive="active" style="text-decoration: none; color: green;">Sign In</a></span>
+            <span class="topbarLink"><a routerLink="/donation-page" routerLinkActive="active" style="text-decoration: none; color: green;">Donate</a></span>
+        </div>
+        <div class="topbarIcons">
+            <div class="topbarIconItem">
+                <p style="color: green;">Contact us : +91 7032994189</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='register'>
+    <div class="registerWrapper">
+      <div class="registerLeft">
+          <h3 class="registerLogo">Help the helping hands</h3>
+          <span class="registerDesc">
+          </span>
+      </div>
+      <div class="registerRight">
+          <div class="registerBox">
+              <input placeholder='enter your name' class="registerInput" [formControl]="volunteerName"/>
+              <input placeholder='enter your mobile number' class="registerInput" [formControl]="volunteerMobileNumber"/>
+              <input placeholder='enter your city' class="registerInput" [formControl]="city"/>
+              <input placeholder='enter your area' class="registerInput" [formControl]="area"/>
+              <input type="email" placeholder='enter your email' class="registerInput" [formControl]="email"/>
+              <input type="password" placeholder='create a password' class="registerInput" [formControl]="password"/>
+              <button class="registerButton" (click)="addVolunteer()">Register</button>
+          </div>
+      </div>
+    </div>
+</div>

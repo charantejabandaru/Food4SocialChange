@@ -1,0 +1,36 @@
+<div class="topbarContainer">
+    <div class="topbarLeft">
+        <span class="logo"><a routerLink="/"><img src="../../../assets/logo.jpg" class="logoimage"></a></span>
+    </div>
+    <div class="topbarRight">
+        <div class="topbarLinks">
+            
+        </div>
+        <div class="topbarIcons">
+            <div class="topbarIconItem">
+                <p style="color: green;">Contact us : +91 7032994189</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='recipient'>
+    <div class="recipientWrapper">
+      <div class="recipientLeft">
+          <h3 class="recipientLogo">SAVE FOOD</h3>
+          <span class="recipientDesc">
+          </span>
+      </div>
+      <div class="recipientRight">
+          <p>{{errorMessage}}</p>
+          <div class="recipientBox">
+              <input placeholder='enter recipient name' class="recipientInput" [formControl]="recipientName"/>
+              <input placeholder='enter recipient mobile number' class="recipientInput" [formControl]="deliveryLocation"/>
+              <input placeholder='enter delivery location' class="recipientInput" [formControl]="recipientMobileNumber" />
+              
+              <input placeholder='enter the area' class="recipientInput" [formControl]="area"/>
+              <input placeholder='enter the city' class="recipientInput" [formControl]="city"/>
+              <button class="recipientButton" (click)="createRecipient()">Add Recipient</button>
+          </div>
+      </div>
+    </div>
+  </div>

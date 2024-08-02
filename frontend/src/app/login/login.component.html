@@ -1,0 +1,34 @@
+<div class="topbarContainer">
+    <div class="topbarLeft">
+        <span class="logo"><a routerLink="/"><img src="../../../assets/logo.jpg" class="logoimage"></a></span>
+    </div>
+    <div class="topbarRight">
+        <div class="topbarLinks">
+            <span class="topbarLink"><a routerLink="/register" routerLinkActive="active" style="text-decoration: none; color: green;">Register</a></span>
+            <span class="topbarLink"><a routerLink="/donation-page" routerLinkActive="active" style="text-decoration: none; color: green;">Donate</a></span>
+        </div>
+        <div class="topbarIcons">
+            <div class="topbarIconItem">
+                <p style="color: green;">Contact us : +91 7032994189</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='login'>
+    <div class="loginWrapper">
+      <div class="loginLeft">
+          <h3 class="loginLogo">Food4SocialChange</h3>
+          <span class="loginDesc">
+          </span>
+      </div>
+      <div class="loginRight">
+          <div class="loginBox">
+              <input placeholder='mobilenumber' class="loginInput" [formControl]="volunteerMobileNumber"/>
+              <input type="password" placeholder='Password' class="loginInput" [formControl]="password"/>
+              <button class="loginButton" (click)="login()">login</button>
+              <button class='loginRgisterButton'><a routerLink="/register" routerLinkActive="active" style="text-decoration: none; color: white;">Create a new Account</a>
+              </button>
+          </div>
+      </div>
+    </div>
+</div>

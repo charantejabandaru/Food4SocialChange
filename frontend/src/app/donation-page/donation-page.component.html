@@ -1,0 +1,37 @@
+<div class="topbarContainer">
+    <div class="topbarLeft">
+        <span class="logo"><a routerLink="/"><img src="../../../assets/logo.jpg" class="logoimage"></a></span>
+    </div>
+    <div class="topbarRight">
+        <div class="topbarLinks">
+            <span class="topbarLink"><a routerLink="/register" routerLinkActive="active" style="text-decoration: none; color: green;">Register</a></span>
+            <span class="topbarLink"><a routerLink="/login" routerLinkActive="active" style="text-decoration: none; color: green;">Sign In</a></span>
+        </div>
+        <div class="topbarIcons">
+            <div class="topbarIconItem">
+                <p style="color: green;">Contact us : +91 7032994189</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='donation'>
+    <div class="donationWrapper">
+      <div class="donationLeft">
+          <h3 class="donationLogo">SAVE FOOD</h3>
+          <span class="donationDesc">
+          </span>
+      </div>
+      <div class="donationRight">
+          <div class="donationBox">
+              <input placeholder='enter your name' class="donationInput" [formControl]="donorName"/>
+              <input placeholder='enter your mobile number' class="donationInput" [formControl]="donorMobileNumber" />
+              <input placeholder='enter the city' class="donationInput" [formControl]="city"/>
+              <input placeholder='enter the area' class="donationInput" [formControl]="area"/>
+              <input placeholder='enter pickup address' class="donationInput" [formControl]="pickupAddress"/>
+              <input placeholder='enter food type' class="donationInput" [formControl]="foodType"/>
+              <input placeholder='enter food quantity' class="donationInput" [formControl]="foodQuantity"/>
+              <button class="donationButton" (click)="raiseDonation()">Donate</button>
+          </div>
+      </div>
+    </div>
+  </div>

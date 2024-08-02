@@ -1,0 +1,20 @@
+<div class='post'>
+    <div class="postWrapper">
+      <div class="postCenter">
+        <p class="postText">Donor Name            : {{donorName}}</p>
+        <p class="postText">Donor Mobile Number   : {{donorMobileNumber}}</p>
+        <p class="postText">Donor Pickup Address  : {{pickupAddress}}</p>
+        <p class="postText">Donor RequestStatus   : {{status}}</p>
+        <p class="postText">Donor city            : {{city}}</p>
+        <p class="postText">Donor Area            :{{area}}</p>
+        <p class="postText">Donor Food Type       : {{foodType}}</p>
+        <p class="postText">Donor Food Quantity   : {{foodQuantity}}</p>
+        <p class="postText">Delivery Location     :{{recipientMobileNumber}}</p>
+        <p class="postText">Added volunteer       :{{volunteerMobileNumber}}</p>
+        <div style="display: flex; justify-content: space-between;">
+        <button style="color: white; background-color: green; border-radius: 5px;" (click)="handleClick()">{{buttonText}}</button>
+        <button style="color: white; background-color: green; border-radius: 5px;" (click)="assignVolunteer()">AddVolunteer</button>
+      </div>
+      </div>
+    </div>
+  </div>

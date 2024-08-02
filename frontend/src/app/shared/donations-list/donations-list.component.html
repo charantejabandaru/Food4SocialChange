@@ -1,0 +1,24 @@
+<div *ngIf="isLoading" class="loading-spinner">
+    <mat-spinner diameter="40"></mat-spinner>
+</div>
+<div style="display: flex; justify-content: space-between; font-size: 30px; padding: 10px;">DONATIONS
+<button style="background-color: green; color: white; border-radius: 5px;" ><a routerLink="/recipient-form" routerLinkActive="active" style="text-decoration: none; color: white;">Add Recipient</a></button>
+</div>
+<div *ngIf="!isLoading && donations.length > 0" class="productsListWrapperParent">
+    <div class="productsListWrapper" *ngFor="let donation of donations">
+        <donation 
+        donorName = {{donation.donorName}}
+        donorMobileNumber = {{donation.donorMobileNumber}}
+        pickupAddress = {{donation.pickupAddress}}
+        status = {{donation.status}}
+        city = {{donation.city}}
+        area = {{donation.area}}
+        foodType = {{donation.foodType}}
+        foodQuantity = {{donation.foodQuantity}}
+        recipientMobileNumber = {{donation.recipientMobileNumber}}
+        ></donation>
+    </div>
+    <div *ngIf="error">
+        <p>{{ error }}</p>
+    </div>
+</div>
