@@ -7,7 +7,7 @@ const configdb = require("./config/configdb");
 const app = express();
 
 dotenv.config({path: "./config/.env"});
-configdb(app);
+configdb();
 
 app.use(cors({
     origin: '*'

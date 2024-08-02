@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-module.exports = async (server) => {
+module.exports = async () => {
     try {
         mongoose.connect(process.env.MONGO_URL, 
         {
