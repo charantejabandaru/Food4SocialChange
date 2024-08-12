@@ -17,5 +17,5 @@ app.use(bodyparser.json());
 app.use(require("./controllers/user"));
 
 app.listen(3000,() => {
-        console.log("server is running on port 3000");
+    console.log("server is running on port 3000");
 });

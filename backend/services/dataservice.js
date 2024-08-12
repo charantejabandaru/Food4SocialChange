@@ -4,6 +4,8 @@ const volunteerModel = require("../models/volunteer");
 const recipientModel = require("../models/recipient");
 const status = require("../status");
 
+const secretKey = process.env.secretKey;
+
 exports.login = async (req,res) => {
     const volunteerCredentials = req.body;
     const authorizedUser = await volunteerModel.findOne({volunteerMobileNumber : volunteerCredentials.username,
